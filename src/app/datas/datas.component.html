@@ -1,0 +1,51 @@
+<div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    Vital Sign
+                </div>
+                <div class="card-block">
+                    <div class="card-title" *ngFor="let vital of vitals">
+                        น้ำหนัก {{vital.Weight}} ส่วนสูง {{vital.Height}} <br/>BP {{vital.Hbloodpress}}/{{vital.Lbloodpress}} <br/>PR {{vital.Pulse}} RR {{vital.Breathe}} BMI {{vital.BMI}} <br/>สูบบุหรี {{vital.Smoke}} ดืมแอลกอฮอล์ {{vital.Alchohol}}
+                    </div>
+                </div>
+                <div class="card-header">
+                        การวินิจฉัย
+                    </div>
+                <div class="card-block">
+                        <div class="card-title" *ngFor="let diag of diags">
+                        {{diag.ICDCode}} : {{diag.DES}}
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        LAB
+                    </div>
+                    <div class="card-block">
+                        <div class="card-title">
+                                <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>ประเภทแล็ป</th>
+                                                <th>ชื่อแล็ป</th>
+                                                <th>ผลแล็ป</th>
+                                                <th>ผลปกติ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let lab of labs">
+                                                <td>{{lab.labName}}</td>
+                                                <td class="left">{{lab.result_name}}</td>
+                                                <td class="left">{{lab.real_res}} {{lab.result_unit}}</td>
+                                                <td>{{lab.res_normal}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>

@@ -1,0 +1,37 @@
+<clr-datagrid style="height:100%" [clrDgLoading]="loading">
+    <clr-dg-column [clrDgField]="'regNo'">
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+                    RegNo
+            </ng-container>
+        </clr-dg-column>
+    <clr-dg-column [clrDgField]="'deptDesc'">
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+                    การวินิจฉัย
+            </ng-container>
+        </clr-dg-column>
+    <clr-dg-column>
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+                    วันที่
+            </ng-container>
+
+    </clr-dg-column>
+    <clr-dg-column>
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+                    test
+            </ng-container>
+    </clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let user of users">
+        <clr-dg-cell>{{user.regNo}}</clr-dg-cell>
+        <clr-dg-cell>{{user.deptDesc}}</clr-dg-cell>
+        <clr-dg-cell>{{user.registDay}}</clr-dg-cell>
+        <clr-dg-cell>{{user.color}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="20">
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+            of {{pagination.totalItems}} users
+        </clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>

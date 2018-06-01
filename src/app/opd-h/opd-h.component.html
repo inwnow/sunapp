@@ -1,0 +1,115 @@
+
+<div class="row">
+<script src="../asset/wheelzoom.js"></script>
+<script>wheelzoom(document.querySelectorAll('img'));</script>
+<div class="col-xs-3">
+<clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+    <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="card-title">
+                                <div class="row">
+                                        <div class="col-xs-7">
+                                            <span><img src="../images/pic1.jpg" width="100"/></span>
+                                        </div>
+                                        <div class="col-xs-5">
+
+                                            <div class="row">
+                                                    <div class="col-xs-12" style="margin-top:2px">
+                                                        <span><button class="btn btn-primary btn-sm btn-block">ใบสั่งยา</button></span>
+                                                    </div>
+                                                    <div class="col-xs-12" style="margin-top:2px">
+                                                        <span><button class="btn btn-primary btn-sm btn-block">consult</button></span>
+                                                    </div>
+                                                    <div class="col-xs-12" style="margin-top:2px">
+                                                        <span><button class="btn btn-primary btn-sm btn-block">เรียกคิว</button></span>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="card-text">
+                                <input type="text" id="requiredInput" placeholder="HN" name="hn" [(ngModel)]="hn" size="13" (enter)="getPatient()"><button type="button" class="btn btn-icon btn-sm" (click)="getPatient()">
+                                        <clr-icon shape="search"></clr-icon>
+                                    </button>
+                        </div>
+                    </div>
+                    <div class="card-block" style="margin-top:0px;margin-bottom:0px" *ngFor="let patient of patients">
+                            <div class="row" >
+                                    <div class="col-xs-12" >
+                                        <span>ชื่อ {{patient.FullName}}</span>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-6">
+                                        <span>เพศ {{patient.sex}}</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span>อายุ {{patient.age}}</span>
+                                    </div>
+
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-12">
+                                        <span>วันเกิด {{patient.dob}}</span>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-12">
+                                        <span>สิทธิการรักษา{{patient.pay_typedes}}</span>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="card-footer" style="margin-top:0px">
+
+                            <clr-datagrid style="height:100%;margin-top:0px" [clrDgLoading]="loading">
+
+                                    <clr-dg-column [clrDgField]="'deptDesc'">
+                                            <ng-container *clrDgHideableColumn="{hidden: false}">
+                                                    การวินิจฉัย
+                                            </ng-container>
+                                        </clr-dg-column>
+
+                                    <clr-dg-row *clrDgItems="let user of users">
+
+                                        <clr-dg-cell (click)="getCard(user.hn,user.regNo)">ครั้งที่ {{user.regNo}}<br/>{{user.deptDesc}}<br/>{{user.registDay}}</clr-dg-cell>
+
+                                    </clr-dg-row>
+
+
+                            </clr-datagrid>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</clr-vertical-nav>
+</div>
+<div class="col-xs-9">
+        <div class="btn-group">
+                <div class="radio btn" *ngFor="let patient of patients">
+                    <input type="radio" [routerLink]="['/datas',patient.hn,patient.regNo]" name="btn-group-demo-radios" id="btn-demo-radio-1">
+                    <label for="btn-demo-radio-1">ข้อมูล</label>
+                </div>
+                <div class="radio btn">
+                    <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-2">
+                    <label for="btn-demo-radio-2">ภาพแสกน</label>
+                </div>
+
+            </div>
+
+        <div class="row" *ngFor="let card of cards">
+            <div class="card">
+            <img src="http://192.168.67.82/magik/index.php?tiff=http://sapimg/imageserver/109/434/2/{{card.PictFile}}" class="img-fluid">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
